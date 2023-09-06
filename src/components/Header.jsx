@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function Header() {
+  const { user } = useAuthContext();
+
   return (
     <header className='header'>
       <nav className='nav nav--tours'>
@@ -24,16 +27,30 @@ function Header() {
         <img src='/assets/img/logo-white.png' alt='Natours logo' />
       </div>
       <nav className='nav nav--user'>
-        {/* <a href='#' className='nav__el'>
-          My bookings
-        </a>
-        <a href='#' className='nav__el'>
-          <img src='/assets/img/user.jpg' alt='User photo' className='nav__user-img' />
-          <span>Jonas</span>
-        </a>*/}
-
-        <button className='nav__el'>Log in</button>
-        <button className='nav__el nav__el--cta'>Sign up</button>
+        {user ? (
+          <>
+            <button className='nav__el'>
+              My bookings
+            </button>
+            <button className='nav__el'>
+              <img
+                src={`/assets/img/users/${user.photo}`}
+                alt='User photo'
+                className='nav__user-img'
+              />
+              <span>{user.name.split(' ')[0]}</span>
+            </button>
+          </>
+        ) : (
+          <>
+            <Link className='nav__el' to='/login'>
+              Log in
+            </Link>
+            <Link className='nav__el nav__el--cta' to='/signup'>
+              Sign up
+            </Link>
+          </>
+        )}
       </nav>
     </header>
   );

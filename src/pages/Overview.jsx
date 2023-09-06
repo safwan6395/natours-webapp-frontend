@@ -1,36 +1,23 @@
-import { useEffect, useState } from "react";
 import TourCard from "../components/TourCard";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useFetch } from "../hooks/useFetch";
 
 function Overview() {
-  const [tours, setTours] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { token } = useAuthContext();
 
-  useEffect(() => {
-    async function getAllTours() {
-      setIsLoading(true);
-      try {
-        const res = await fetch("http://localhost:3000/api/v1/tours");
-
-        const { data } = await res.json();
-
-        setTours(data.data);
-      } catch (err) {
-        console.error("something went wrong while fetching tours");
-      }
-      setIsLoading(false);
-    }
-
-    getAllTours();
-  }, []);
+  const { data, isPending } = useFetch(
+    "http://localhost:3000/api/v1/tours",
+    token
+  );
 
   return (
     <main className='main'>
-      {isLoading && <h2 className='loading'>Loading...</h2>}
-      {!isLoading && (
+      {isPending && <h2 className='loading'>Loading...</h2>}
+      {!isPending && (
         <div className='card-container'>
-          {tours.map((t) => (
-            <TourCard tour={t} key={t.id} />
-          ))}
+          {data &&
+            data.status === "success" &&
+            data.data.data.map((t) => <TourCard tour={t} key={t.id} />)}
         </div>
       )}
     </main>

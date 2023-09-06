@@ -1,5 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { useParams } from "react-router-dom";
+import { useFetch } from "../hooks/useFetch";
 
 const OverviewBox = function (label, text, icon) {
   return (
@@ -15,31 +16,18 @@ const OverviewBox = function (label, text, icon) {
 
 function Tour() {
   const { id } = useParams();
-  const [tour, setTour] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const { data, isPending } = useFetch(
+    `http://localhost:3000/api/v1/tours/${id}`
+  );
 
-  useEffect(() => {
-    async function getTour() {
-      setIsLoading(true);
-      try {
-        const res = await fetch(`http://localhost:3000/api/v1/tours/${id}`);
-        const { data } = await res.json();
-
-        setTour(data.data);
-      } catch (err) {
-        console.error("something went wrong while fetching tour");
-      }
-      setIsLoading(false);
-    }
-
-    getTour();
-  }, [id]);
+  let tour;
+  if (data) tour = data.data.data;
 
   return (
     <Fragment>
-      {isLoading && <h2 className='loading'>Loading...</h2>}
+      {isPending && <h2 className='loading'>Loading...</h2>}
 
-      {!isLoading && tour && (
+      {!isPending && tour && (
         <Fragment>
           <section className='section-header'>
             <div className='header__hero'>
@@ -200,7 +188,8 @@ function Tour() {
               <div className='cta__content'>
                 <h2 className='heading-secondary'>What are you waiting for?</h2>
                 <p className='cta__text'>
-                  {tour.duration} days. 1 adventure. Infinite memories. Make it yours today!
+                  {tour.duration} days. 1 adventure. Infinite memories. Make it
+                  yours today!
                 </p>
                 <button className='btn btn--green span-all-rows'>
                   Book tour now!
