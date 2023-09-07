@@ -13,7 +13,7 @@ function Header() {
         <form className='nav__search'>
           <button className='nav__search-btn'>
             <svg>
-              <use href='/assets/img/icons.svg#icon-search'></use>
+              <use href='http://localhost:3000/img/icons.svg#icon-search'></use>
             </svg>
           </button>
           <input
@@ -24,7 +24,7 @@ function Header() {
         </form>
       </nav>
       <div className='header__logo'>
-        <img src='/assets/img/logo-white.png' alt='Natours logo' />
+        <img src='http://localhost:3000/img/logo-white.png' alt='Natours logo' />
       </div>
       <nav className='nav nav--user'>
         {user ? (
@@ -34,7 +34,7 @@ function Header() {
             </button>
             <button className='nav__el'>
               <img
-                src={`/assets/img/users/${user.photo}`}
+                src={`http://localhost:3000/img/users/${user.photo}`}
                 alt='User photo'
                 className='nav__user-img'
               />

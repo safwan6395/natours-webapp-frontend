@@ -2,7 +2,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer__logo">
-        <img src="/assets/img/logo-green.png" alt="Natours logo" />
+        <img src="http://localhost:3000/img/logo-green.png" alt="Natours logo" />
       </div>
       <ul className="footer__nav">
         <li><a href="#">About us</a></li>
@@ -12,7 +12,7 @@ function Footer() {
         <li><a href="#">Contact</a></li>
       </ul>
       <p className="footer__copyright">
-        &copy; by Jonas Schmedtmann. All rights reserved.
+        &copy; by Safwan Hasan. All rights reserved.
       </p>
     </div>
   )

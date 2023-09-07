@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Cookies from "js-cookie";
+import { useAuthContext } from "./hooks/useAuthContext";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Overview from "./pages/Overview";
 import Tour from "./pages/Tour";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
   const { authIsReady, dispatch } = useAuthContext();
@@ -25,14 +24,20 @@ function App() {
 
         const data = await res.json();
 
-        dispatch({ type: "LOGIN", payload: data.data.data, token: jwt });
+        dispatch({
+          type: "AUTH_IS_READY",
+          payload: data.data.data,
+          token: jwt,
+        });
       } catch (err) {
         console.log(err);
       }
     };
 
     const jwt = localStorage.getItem("jwt");
+    
     if (jwt) getCurrentUser(jwt);
+    else dispatch({ type: "AUTH_IS_READY" });
   }, [dispatch]);
 
   return (

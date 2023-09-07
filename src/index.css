@@ -1357,3 +1357,32 @@ body {
 .main {
   min-height: 69vh;
 }
+
+.thumbnail__group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thumbnail-btn {
+  padding: 0.5rem 1rem;
+  color: inherit;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 200rem;
+}
+
+.thumbnail-name {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: inherit;
+  padding: 0 1rem;
+}
+
+.errorr {
+  padding: .5rem 1rem;
+  background-color: pink;
+  color: red;
+  font-size: 1.5rem;
+  border: 1px solid red;
+  border-radius: 5px;
+}

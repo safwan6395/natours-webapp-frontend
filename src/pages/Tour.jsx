@@ -6,7 +6,7 @@ const OverviewBox = function (label, text, icon) {
   return (
     <div className='overview-box__detail'>
       <svg className='overview-box__icon'>
-        <use href={`/assets/img/icons.svg#icon-${icon}`}></use>
+        <use href={`http://localhost:3000/img/icons.svg#icon-${icon}`}></use>
       </svg>
       <span className='overview-box__label'>{label}</span>
       <span className='overview-box__text'>{text}</span>
@@ -34,7 +34,7 @@ function Tour() {
               <div className='header__hero-overlay'>&nbsp;</div>
               <img
                 className='header__hero-img'
-                src={`/assets/img/tours/${tour.imageCover}`}
+                src={`http://localhost:3000/img/tours/${tour.imageCover}`}
                 alt={`${tour.name}`}
               />
             </div>
@@ -45,7 +45,7 @@ function Tour() {
               <div className='heading-box__group'>
                 <div className='heading-box__detail'>
                   <svg className='heading-box__icon'>
-                    <use href='/assets/img/icons.svg#icon-clock'></use>
+                    <use href='http://localhost:3000/img/icons.svg#icon-clock'></use>
                   </svg>
                   <span className='heading-box__text'>
                     {tour.duration} days
@@ -53,7 +53,7 @@ function Tour() {
                 </div>
                 <div className='heading-box__detail'>
                   <svg className='heading-box__icon'>
-                    <use href='/assets/img/icons.svg#icon-map-pin'></use>
+                    <use href='http://localhost:3000/img/icons.svg#icon-map-pin'></use>
                   </svg>
                   <span className='heading-box__text'>
                     {tour.startLocation.description}
@@ -93,7 +93,7 @@ function Tour() {
                   {tour.guides.map((g) => (
                     <div className='overview-box__detail' key={g._id}>
                       <img
-                        src={`/assets/img/users/${g.photo}`}
+                        src={`http://localhost:3000/img/users/${g.photo}`}
                         alt={g.role === "guide" ? "Tour guide" : "Lead guide"}
                         className='overview-box__img'
                       />
@@ -124,7 +124,7 @@ function Tour() {
               <div className='picture-box' key={i}>
                 <img
                   className={`picture-box__img picture-box__img--${i + 1}`}
-                  src={`/assets/img/tours/${img}`}
+                  src={`http://localhost:3000/img/tours/${img}`}
                   alt={`${tour.name} Tour ${i + 1}`}
                 />
               </div>
@@ -141,7 +141,7 @@ function Tour() {
                 <div className='reviews__card' key={r.id}>
                   <div className='reviews__avatar'>
                     <img
-                      src={`/assets/img/users/${r.user.photo}`}
+                      src={`http://localhost:3000/img/users/${r.user.photo}`}
                       alt={r.user.name}
                       className='reviews__avatar-img'
                     />
@@ -156,7 +156,7 @@ function Tour() {
                         }`}
                         key={num}
                       >
-                        <use href='/assets/img/icons.svg#icon-star'></use>
+                        <use href='http://localhost:3000/img/icons.svg#icon-star'></use>
                       </svg>
                     ))}
                   </div>
@@ -169,18 +169,18 @@ function Tour() {
             <div className='cta'>
               <div className='cta__img cta__img--logo'>
                 <img
-                  src='/assets/img/logo-white.png'
+                  src='http://localhost:3000/img/logo-white.png'
                   alt='Natours logo'
                   className=''
                 />
               </div>
               <img
-                src={`/assets/img/tours/${tour.images[1]}`}
+                src={`http://localhost:3000/img/tours/${tour.images[1]}`}
                 alt='Tour picture'
                 className='cta__img cta__img--1'
               />
               <img
-                src={`/assets/img/tours/${tour.images[2]}`}
+                src={`http://localhost:3000/img/tours/${tour.images[2]}`}
                 alt='Tour picture'
                 className='cta__img cta__img--2'
               />

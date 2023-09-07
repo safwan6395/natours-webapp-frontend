@@ -13,8 +13,8 @@ const authReducer = (state, action) => {
   if (action.type === "LOGOUT")
     return {
       ...state,
-      user: null,
-      token: null,
+      user: undefined,
+      token: undefined,
     };
   if (action.type === "AUTH_IS_READY")
     return {
@@ -29,15 +29,11 @@ const authReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
-    user: null,
-    token: null,
+    user: undefined,
+    token: undefined,
     authIsReady: false,
   });
   console.log("AuthContext: ", state);
-
-  useEffect(() => {
-    dispatch({type: 'AUTH_IS_READY'})
-  }, []);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
