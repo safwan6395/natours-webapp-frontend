@@ -7,11 +7,13 @@ import Overview from "./pages/Overview";
 import Tour from "./pages/Tour";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ErrorPage from './pages/ErrorPage'
 
 function App() {
   const { authIsReady, dispatch } = useAuthContext();
 
   useEffect(() => {
+    console.log('it run')
     const getCurrentUser = async (jwt) => {
       try {
         const res = await fetch("http://localhost:3000/api/v1/users/me", {
@@ -51,7 +53,7 @@ function App() {
             <Route path='/login' exact element={<Login />} />
             <Route path='/signup' exact element={<Signup />} />
 
-            <Route path='*' element={<h2>Route not exist</h2>} />
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>
