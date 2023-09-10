@@ -1,41 +1,71 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function Signup() {
+  const { dispatch } = useAuthContext();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
-  const [thumbnailError, setThumbnailError] = useState(null);
+  // const [thumbnail, setThumbnail] = useState(null);
+  // const [thumbnailError, setThumbnailError] = useState(null);
 
-  const avatarInputRef = useRef();
+  // const avatarInputRef = useRef();
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(displayName, email, password, passwordConfirm, thumbnail);
+    try {
+      const res = await fetch("http://localhost:3000/api/v1/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: displayName,
+          email,
+          password,
+          passwordConfirm,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.status === 'error') throw data.error
+
+      localStorage.setItem("jwt", data.token);
+      dispatch({ type: "LOGIN", payload: data.data.user, token: data.token });
+
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleFileChange = (e) => {
-    setThumbnail(null);
-    const selected = e.target.files[0];
+  // const handleFileChange = (e) => {
+  //   setThumbnail(null);
+  //   const selected = e.target.files[0];
 
-    if (!selected) {
-      return setThumbnailError("Please select a file");
-    }
+  //   if (!selected) {
+  //     return setThumbnailError("Please select a file");
+  //   }
 
-    if (!selected.type.includes("image")) {
-      return setThumbnailError("Selected file must be an image");
-    }
+  //   if (!selected.type.includes("image")) {
+  //     return setThumbnailError("Selected file must be an image");
+  //   }
 
-    if (selected.size > 100000) {
-      return setThumbnailError("Image file size must be less than 100kb");
-    }
+  //   if (selected.size > 100000) {
+  //     return setThumbnailError("Image file size must be less than 100kb");
+  //   }
 
-    setThumbnailError(null);
-    setThumbnail(selected);
-    console.log("Thumbnail updated");
-  };
+  //   setThumbnailError(null);
+  //   setThumbnail(selected);
+  //   console.log("Thumbnail updated");
+  // };
 
   return (
     <main className='main'>
@@ -100,7 +130,7 @@ function Signup() {
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
           </div>
-          <div className='form__group ma-bt-md'>
+          {/* <div className='form__group ma-bt-md'>
             <div className='thumbnail__group'>
               <button
                 className='form__label thumbnail-btn'
@@ -121,7 +151,7 @@ function Signup() {
               />
             </div>
             {thumbnailError && <div className='errorr'>{thumbnailError}</div>}
-          </div>
+          </div> */}
           <div className='form__group'>
             <button className='btn btn--green'>Signup</button>
           </div>

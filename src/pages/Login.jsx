@@ -24,6 +24,8 @@ function Login() {
       });
 
       const data = await res.json();
+
+      if (data.status === 'fail') throw data.error
       
       localStorage.setItem("jwt", data.token);
       dispatch({ type: "LOGIN", payload: data.data.user, token: data.token });
