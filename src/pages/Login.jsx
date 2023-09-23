@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ErrorModal from "../components/ErrorModal";
 
-import icons from "../assets/icons.svg";
 import PasswordEye from "../components/PasswordEye";
 
 function Login() {
