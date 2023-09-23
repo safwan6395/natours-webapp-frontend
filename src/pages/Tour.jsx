@@ -1,20 +1,9 @@
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import OverviewBox from "../components/OverviewBox";
 
 import icons from "../assets/icons.svg";
-
-const OverviewBox = function (label, text, icon) {
-  return (
-    <div className='overview-box__detail'>
-      <svg className='overview-box__icon'>
-        <use xlinkHref={`${icons}#icon-${icon}`}></use>
-      </svg>
-      <span className='overview-box__label'>{label}</span>
-      <span className='overview-box__text'>{text}</span>
-    </div>
-  );
-};
 
 function Tour() {
   const { id } = useParams();
@@ -85,7 +74,7 @@ function Tour() {
                     "user"
                   )}
                   {OverviewBox("Rating", `${tour.ratingsAverage} / 5`, "star")}
-                  {OverviewBox('Tour provider', tour.tourProvider, 'office')}
+                  {OverviewBox("Tour provider", tour.tourProvider, "office")}
                 </div>
 
                 <div className='overview-box__group'>

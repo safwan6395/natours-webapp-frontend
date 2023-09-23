@@ -4,11 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ErrorModal from "../components/ErrorModal";
 
+import icons from "../assets/icons.svg";
+import PasswordEye from "../components/PasswordEye";
+
 function Login() {
   const { dispatch } = useAuthContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -76,12 +80,16 @@ function Login() {
               <input
                 className='form__input'
                 id='password'
-                type='password'
+                type={passwordVisibility ? "text" : "password"}
                 placeholder='••••••••'
                 required='required'
                 minLength='8'
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+              />
+              <PasswordEye
+                handleClick={() => setPasswordVisibility((prevS) => !prevS)}
+                passwordVisibility={passwordVisibility}
               />
             </div>
             <div className='form__group'>

@@ -8,6 +8,7 @@ import Tour from "./pages/Tour";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ErrorPage from './pages/ErrorPage'
+import UserAccount from "./pages/UserAccount";
 
 function App() {
   const { authIsReady, dispatch } = useAuthContext();
@@ -52,6 +53,8 @@ function App() {
             <Route path='/tour/:id' exact element={<Tour />} />
             <Route path='/login' exact element={<Login />} />
             <Route path='/signup' exact element={<Signup />} />
+
+            <Route path='/me' exact element={<UserAccount />} />
 
             <Route path='*' element={<ErrorPage />} />
           </Routes>

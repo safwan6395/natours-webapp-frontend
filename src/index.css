@@ -1292,8 +1292,23 @@ body {
   color: #bbb;
 }
 
+.form__group {
+  position: relative;
+}
+
 .form__group:not(:last-child) {
   margin-bottom: 2.5rem;
+}
+
+.form__group svg {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  right: 1rem;
+  top: 4.3rem;
+  fill: #888;
+  z-index: 99;
+  cursor: pointer;
 }
 
 .form__label {

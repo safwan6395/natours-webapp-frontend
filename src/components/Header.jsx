@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-import  icon from '../assets/icons.svg'
+import icon from "../assets/icons.svg";
 
 function Header() {
   const { user, dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     dispatch({ type: "LOGOUT" });
+    navigate("/");
   };
 
   return (
@@ -42,14 +44,14 @@ function Header() {
             <button className='nav__el' onClick={handleLogout}>
               Log out
             </button>
-            <button className='nav__el'>
+            <Link className='nav__el' to='/me'>
               <img
                 src={`http://localhost:3000/img/users/${user.photo}`}
                 alt='User photo'
                 className='nav__user-img'
               />
               <span>{user.name.split(" ")[0]}</span>
-            </button>
+            </Link>
           </>
         ) : (
           <>

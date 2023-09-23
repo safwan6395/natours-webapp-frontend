@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ErrorModal from "../components/ErrorModal";
 import { AnimatePresence } from "framer-motion";
+import PasswordEye from "../components/PasswordEye";
 
 function Signup() {
   const { dispatch } = useAuthContext();
@@ -13,6 +14,10 @@ function Signup() {
   const [displayName, setDisplayName] = useState("");
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [passwordConfirmVisibility, setPasswordConfirmVisibility] =
+    useState(false);
   // const [thumbnail, setThumbnail] = useState(null);
   // const [thumbnailError, setThumbnailError] = useState(null);
 
@@ -122,12 +127,16 @@ function Signup() {
               <input
                 className='form__input'
                 id='password'
-                type='password'
+                type={passwordVisibility ? "text" : "password"}
                 placeholder='••••••••'
                 required
                 minLength='8'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+              />
+              <PasswordEye
+                handleClick={() => setPasswordVisibility((prevS) => !prevS)}
+                passwordVisibility={passwordVisibility}
               />
             </div>
             <div className='form__group ma-bt-md'>
@@ -137,12 +146,18 @@ function Signup() {
               <input
                 className='form__input'
                 id='passwordConfirm'
-                type='password'
+                type={passwordConfirmVisibility ? "text" : "password"}
                 placeholder='••••••••'
                 required
                 minLength='8'
                 value={passwordConfirm}
                 onChange={(e) => setPasswordConfirm(e.target.value)}
+              />
+              <PasswordEye
+                handleClick={() =>
+                  setPasswordConfirmVisibility((prevS) => !prevS)
+                }
+                passwordVisibility={passwordConfirmVisibility}
               />
             </div>
             {/* <div className='form__group ma-bt-md'>
