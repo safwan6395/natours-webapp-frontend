@@ -2,11 +2,13 @@ import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 
+import icons from "../assets/icons.svg";
+
 const OverviewBox = function (label, text, icon) {
   return (
     <div className='overview-box__detail'>
       <svg className='overview-box__icon'>
-        <use href={`http://localhost:3000/img/icons.svg#icon-${icon}`}></use>
+        <use xlinkHref={`${icons}#icon-${icon}`}></use>
       </svg>
       <span className='overview-box__label'>{label}</span>
       <span className='overview-box__text'>{text}</span>
@@ -45,7 +47,7 @@ function Tour() {
               <div className='heading-box__group'>
                 <div className='heading-box__detail'>
                   <svg className='heading-box__icon'>
-                    <use href='http://localhost:3000/img/icons.svg#icon-clock'></use>
+                    <use xlinkHref={`${icons}#icon-clock`}></use>
                   </svg>
                   <span className='heading-box__text'>
                     {tour.duration} days
@@ -53,7 +55,7 @@ function Tour() {
                 </div>
                 <div className='heading-box__detail'>
                   <svg className='heading-box__icon'>
-                    <use href='http://localhost:3000/img/icons.svg#icon-map-pin'></use>
+                    <use xlinkHref={`${icons}#icon-map-pin`}></use>
                   </svg>
                   <span className='heading-box__text'>
                     {tour.startLocation.description}
@@ -83,6 +85,7 @@ function Tour() {
                     "user"
                   )}
                   {OverviewBox("Rating", `${tour.ratingsAverage} / 5`, "star")}
+                  {OverviewBox('Tour provider', tour.tourProvider, 'office')}
                 </div>
 
                 <div className='overview-box__group'>
@@ -156,7 +159,7 @@ function Tour() {
                         }`}
                         key={num}
                       >
-                        <use href='http://localhost:3000/img/icons.svg#icon-star'></use>
+                        <use xlinkHref={`${icons}#icon-star`}></use>
                       </svg>
                     ))}
                   </div>
@@ -170,7 +173,7 @@ function Tour() {
               <div className='cta__img cta__img--logo'>
                 <img
                   src='http://localhost:3000/img/logo-white.png'
-                  alt='Natours logo'
+                  alt='Tourify logo'
                   className=''
                 />
               </div>

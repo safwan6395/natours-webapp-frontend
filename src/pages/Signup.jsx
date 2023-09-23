@@ -48,7 +48,9 @@ function Signup() {
 
       navigate("/");
     } catch (err) {
-      setError(err.message);
+      err.code === 11000
+        ? setError("User already exists")
+        : setError(err.message);
       console.log(err);
       setTimeout(() => setError(null), 3000);
     }

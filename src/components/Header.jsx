@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+import  icon from '../assets/icons.svg'
+
 function Header() {
   const { user, dispatch } = useAuthContext();
 
@@ -18,7 +20,7 @@ function Header() {
         <form className='nav__search'>
           <button className='nav__search-btn'>
             <svg>
-              <use href='http://localhost:3000/img/icons.svg#icon-search'></use>
+              <use xlinkHref={`${icon}#icon-search`}></use>
             </svg>
           </button>
           <input

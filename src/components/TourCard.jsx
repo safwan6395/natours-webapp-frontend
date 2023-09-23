@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import icon from "../assets/icons.svg";
+
 function TourCard({ tour }) {
   return (
     <div className='card'>
@@ -25,13 +27,13 @@ function TourCard({ tour }) {
         <p className='card__text'>{tour.summary}</p>
         <div className='card__data'>
           <svg className='card__icon'>
-            <use href='http://localhost:3000/img/icons.svg#icon-map-pin'></use>
+            <use xlinkHref={`${icon}#icon-map-pin`}></use>
           </svg>
           <span>{tour.startLocation.description}</span>
         </div>
         <div className='card__data'>
           <svg className='card__icon'>
-            <use href='http://localhost:3000/img/icons.svg#icon-calendar'></use>
+            <use xlinkHref={`${icon}#icon-calendar`}></use>
           </svg>
           <span>
             {new Date(tour.startDates[0]).toLocaleString("en-us", {
@@ -42,13 +44,13 @@ function TourCard({ tour }) {
         </div>
         <div className='card__data'>
           <svg className='card__icon'>
-            <use href='http://localhost:3000/img/icons.svg#icon-flag'></use>
+            <use xlinkHref={`${icon}#icon-flag`}></use>
           </svg>
           <span>{tour.locations.length} stops</span>
         </div>
         <div className='card__data'>
           <svg className='card__icon'>
-            <use href='http://localhost:3000/img/icons.svg#icon-user'></use>
+            <use xlinkHref={`${icon}#icon-user`}></use>
           </svg>
           <span>{tour.maxGroupSize} people</span>
         </div>
@@ -56,7 +58,7 @@ function TourCard({ tour }) {
 
       <div className='card__footer'>
         <p>
-          <span className='card__footer-value'>${tour.price}{' '}</span>
+          <span className='card__footer-value'>${tour.price} </span>
           <span className='card__footer-text'>per person</span>
         </p>
         <p className='card__ratings'>
