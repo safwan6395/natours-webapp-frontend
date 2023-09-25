@@ -34,7 +34,7 @@ export default function UserAccount() {
     e.preventDefault();
     setError(null);
     try {
-      const res = await fetch("http://localhost:3000/api/v1/users/updateMe", {
+      const res = await fetch(`${import.meta.env.VITE_REMOTE_URL}api/v1/users/updateMe`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function UserAccount() {
     setIsPending(true);
     try {
       const res = await fetch(
-        "http://localhost:3000/api/v1/users/updateMyPassword",
+        `${import.meta.env.VITE_REMOTE_URL}api/v1/users/updateMyPassword`,
         {
           method: "PATCH",
           headers: {
@@ -173,7 +173,7 @@ export default function UserAccount() {
                 <div className='form__group form__photo-upload'>
                   <img
                     className='form__user-photo'
-                    src={`http://localhost:3000/img/users/${user.photo}`}
+                    src={`${import.meta.env.VITE_REMOTE_URL}img/users/${user.photo}`}
                     alt='User photo'
                   />
                   <a className='btn-text' href=''>

@@ -6,7 +6,7 @@ function Overview() {
   const { token } = useAuthContext();
 
   const { data, isPending } = useFetch(
-    "http://localhost:3000/api/v1/tours",
+    `${import.meta.env.VITE_REMOTE_URL}api/v1/tours`,
     token
   );
 

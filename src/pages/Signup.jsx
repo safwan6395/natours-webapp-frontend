@@ -31,7 +31,7 @@ function Signup() {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:3000/api/v1/users/signup", {
+      const res = await fetch(`${import.meta.env.VITE_REMOTE_URL}api/v1/users/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

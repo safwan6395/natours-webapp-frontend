@@ -7,17 +7,17 @@ import Overview from "./pages/Overview";
 import Tour from "./pages/Tour";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import ErrorPage from './pages/ErrorPage'
+import ErrorPage from "./pages/ErrorPage";
 import UserAccount from "./pages/UserAccount";
 
 function App() {
   const { authIsReady, dispatch } = useAuthContext();
 
   useEffect(() => {
-    console.log('it run')
+    console.log(import.meta.env.VITE_LOCAL_URL, import.meta.env.VITE_REMOTE_URL)
     const getCurrentUser = async (jwt) => {
       try {
-        const res = await fetch("http://localhost:3000/api/v1/users/me", {
+        const res = await fetch(`${import.meta.env.VITE_REMOTE_URL}api/v1/users/me`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function App() {
     };
 
     const jwt = localStorage.getItem("jwt");
-    
+
     if (jwt) getCurrentUser(jwt);
     else dispatch({ type: "AUTH_IS_READY" });
   }, [dispatch]);

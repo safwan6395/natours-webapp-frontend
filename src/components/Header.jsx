@@ -34,7 +34,7 @@ function Header() {
       </nav>
       <div className='header__logo'>
         <img
-          src='http://localhost:3000/img/logo-white.png'
+          src={`${import.meta.env.VITE_REMOTE_URL}img/logo-white.png`}
           alt='Natours logo'
         />
       </div>
@@ -46,7 +46,7 @@ function Header() {
             </button>
             <Link className='nav__el' to='/me'>
               <img
-                src={`http://localhost:3000/img/users/${user.photo}`}
+                src={`${import.meta.env.VITE_REMOTE_URL}img/users/${user.photo}`}
                 alt='User photo'
                 className='nav__user-img'
               />

@@ -8,7 +8,7 @@ import icons from "../assets/icons.svg";
 function Tour() {
   const { id } = useParams();
   const { data, isPending } = useFetch(
-    `http://localhost:3000/api/v1/tours/${id}`
+    `${import.meta.env.VITE_REMOTE_URL}api/v1/tours/${id}`
   );
 
   let tour;
@@ -25,7 +25,7 @@ function Tour() {
               <div className='header__hero-overlay'>&nbsp;</div>
               <img
                 className='header__hero-img'
-                src={`http://localhost:3000/img/tours/${tour.imageCover}`}
+                src={`${import.meta.env.VITE_REMOTE_URL}img/tours/${tour.imageCover}`}
                 alt={`${tour.name}`}
               />
             </div>
@@ -85,7 +85,7 @@ function Tour() {
                   {tour.guides.map((g) => (
                     <div className='overview-box__detail' key={g._id}>
                       <img
-                        src={`http://localhost:3000/img/users/${g.photo}`}
+                        src={`${import.meta.env.VITE_REMOTE_URL}img/users/${g.photo}`}
                         alt={g.role === "guide" ? "Tour guide" : "Lead guide"}
                         className='overview-box__img'
                       />
@@ -116,7 +116,7 @@ function Tour() {
               <div className='picture-box' key={i}>
                 <img
                   className={`picture-box__img picture-box__img--${i + 1}`}
-                  src={`http://localhost:3000/img/tours/${img}`}
+                  src={`${import.meta.env.VITE_REMOTE_URL}img/tours/${img}`}
                   alt={`${tour.name} Tour ${i + 1}`}
                 />
               </div>
@@ -133,7 +133,7 @@ function Tour() {
                 <div className='reviews__card' key={r.id}>
                   <div className='reviews__avatar'>
                     <img
-                      src={`http://localhost:3000/img/users/${r.user.photo}`}
+                      src={`${import.meta.env.VITE_REMOTE_URL}img/users/${r.user.photo}`}
                       alt={r.user.name}
                       className='reviews__avatar-img'
                     />
@@ -161,18 +161,18 @@ function Tour() {
             <div className='cta'>
               <div className='cta__img cta__img--logo'>
                 <img
-                  src='http://localhost:3000/img/logo-white.png'
+                  src={`${import.meta.env.VITE_REMOTE_URL}img/logo-white.png`}
                   alt='Tourify logo'
                   className=''
                 />
               </div>
               <img
-                src={`http://localhost:3000/img/tours/${tour.images[1]}`}
+                src={`${import.meta.env.VITE_REMOTE_URL}img/tours/${tour.images[1]}`}
                 alt='Tour picture'
                 className='cta__img cta__img--1'
               />
               <img
-                src={`http://localhost:3000/img/tours/${tour.images[2]}`}
+                src={`${import.meta.env.VITE_REMOTE_URL}img/tours/${tour.images[2]}`}
                 alt='Tour picture'
                 className='cta__img cta__img--2'
               />

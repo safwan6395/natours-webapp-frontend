@@ -2,7 +2,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer__logo">
-        <img src="http://localhost:3000/img/logo-green.png" alt="Natours logo" />
+        <img src={`${import.meta.env.VITE_REMOTE_URL}img/logo-green.png`} alt="Natours logo" />
       </div>
       <ul className="footer__nav">
         <li><a href="#">About us</a></li>

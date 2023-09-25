@@ -9,7 +9,7 @@ function TourCard({ tour }) {
         <div className='card__picture'>
           <div className='card__picture-overlay'>&nbsp;</div>
           <img
-            src={`http://localhost:3000/img/tours/${tour.imageCover}`}
+            src={`${import.meta.env.VITE_REMOTE_URL}img/tours/${tour.imageCover}`}
             alt='Tour 1'
             className='card__picture-img'
           />
